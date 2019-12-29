@@ -1,7 +1,7 @@
 # O que é DOCKER
-    Docker não é um sistema de virtualização tradicional baseado en máquinas virtuais.
+Docker não é um sistema de virtualização tradicional baseado en máquinas virtuais.
 
-    Docker é engine de administração de containers, é um serviço que vai administrar os contener a ser criado por ele.
+Docker é engine de administração de containers, é um serviço que vai administrar os contener a ser criado por ele.
 
 Docker se baseia em uma tecnologia chamda **LXC** *(Linux Container)* . É tecnologia Open Source, desenvolvida em **GO**, utiliza uma virtualização baseada em *software de sietma operacional* (SO). O *Host* e *Container* compartilham o **Kernel**.
 
@@ -44,7 +44,7 @@ mais recente é gravável.
 
 Para explicar melhort a difeneça entre imagem e container temos ter em mente o paradigma orientado a objetos, este tem o conceito chamado ***Classe*** que a parti dela você pode criar multi ***Objetos*** usando a classe como modelo. Na mesma forma nos temos a **imagem Docker** sendo usada como modelo para criar os **Container**. Então a **Imagem** é o modelo e os **Container** é a realização dessa imagem.
 
-    O **Container** é o processo esta na memória do computador sendo executado e a **Imagem** é justamente o modelo que sistema de arquivo de somente leitura, que é usado no momento do **Container** vai iniciar que ele monta o sistema de arquivo que é baseado em *camadas* para que ele possa startar  deo processo de aplicações, blibliotecas etc..
+>O **Container** é o processo esta na memória do computador sendo executado e a **Imagem** é justamente o modelo que sistema de arquivo de somente leitura, que é usado no momento do **Container** vai iniciar que ele monta o sistema de arquivo que é baseado em *camadas* para que ele possa startar  deo processo de aplicações, blibliotecas etc..
 
 # Arquitetura Docker
 
@@ -54,7 +54,11 @@ Para explicar melhort a difeneça entre imagem e container temos ter em mente o 
 
 Tem o **Docker Daemon** que também é chamado de **Docker Server** ou **Docker Engine**
 
-Tem as parte do **Client** tem parte `CLI>_` é a forma padrão que é usado para acessar os serviços gerenciado pelo **Daemon**
+Tem as parte do **Client** usa linha de comando
+```console
+CLI>_
+``` 
+é a forma padrão que é usado para acessar os serviços gerenciado pelo **Daemon**
 
 Por esxemplo você passa para **Daemon** que quer criar uma *imagem* e o *Daemon* vai no *Registry* que pode ser no **GITHUB* ou **Imagem no sistema**. No **DockerHub** ele já tem essas imagens prontas, ele faz o download dessas imagens para seu computador local (Host) e apartir dessas imagens locais é que o container é estanciados, são criados para serem executados na máquina local (Host).
 
