@@ -143,7 +143,7 @@ a9347ec2a9e4        nginx                       "nginx -g 'daemon of…"   2 mon
 
 > O comando `--rm` remove um container
 
-## 4- Run cria sempre novo containers
+## 4- Run cria sempre novos containers
 O método `run` sempre cria um novo container toda vez que é chamado.
 
 ### Vamos para exemplo pratico:
@@ -152,8 +152,7 @@ O método `run` sempre cria um novo container toda vez que é chamado.
 ```console
 > docker container run -it debian bash
 ```
-> [!IMPORTANT]
-> *Esse comando você entra no terminal do container, onte `i` é o modo interativo e o `t` é chamda para o terminal.*
+> *Esse comando você entra no terminal do container, onde o* `i` *é o modo interativo e o* `t` *é chamda para o terminal.*
 
 2. Agora você tem acesso ao terminal do container, crie um arquivo com comando touch
 ```console
@@ -177,5 +176,63 @@ root@35133706f312:/# ls curso-docker.txt
 ls: cannot access 'curso-docker.txt': No such file or directory
 root@35133706f312:/# 
 ```
-> [!NOTE]
-> De fato o arquivo não está, e comprova que o comando `run`cria sempre novo container.
+> De fato o arquivo não está, e comprova que o comando `run`sempre cria novo container.
+
+## 5 - Nomeando containers
+Vamos começar agora aprender como nomer container, criar estratégia de reusar o mesmo container mais de uma vez.
+```console
+> docker container run --name mydeb -it debian bash
+```
+>*O nome dado ao container é* `mydeb` 
+
+Tente criar novamente o container, repita o mesmo comando anterior
+```console
+> docker container run --name mydeb -it debian bash
+docker: Error response from daemon: Conflict. The container name "/mydeb" is already in use by container "7e18875847aa2dcc2b4b1b9e758575ce4131a54ff7b5dd239019f41b8d359785". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'
+```
+>Veja que gera um erro e reforçando que devemos nomear os container com  nomes unicos.
+
+## 6 - Reutilizar containers
+Primeiro list todos os container
+```console
+> docker container ls -a
+CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS                      PORTS           NAMES
+a1a70495fc66        debian                      "bash"                   25 minutes ago      Exited (2) 11 minutes ago                beautiful_jackson
+35133706f312        debian                      "bash"                   34 minutes ago      Exited (0) 25 minutes ago                charming_dhawan
+6cb4754d1bb9        debian                      "bash --version"         19 hours ago        Exited (0) 19 hours ago                  practical_cannon
+295a62e7c14c        hello-world                 "/hello"                 20 hours ago        Exited (0) 20 hours ago                  hardcore_euler
+23a09c3e8b67        jenkins/jenkins             "/sbin/tini -- /usr/…"   3 days ago          Exited (255) 28 hours ago   0.0.0.0:8080->8080/tcp, 50000/tcp   
+196c225d0c1e        hello-world                 "/hello"                 6 days ago          Exited (0) 6 days ago                    suspicious_kalam
+0e6472c2c477        hello-world                 "/hello"                 6 days ago          Exited (0) 6 days ago                    recursing_elbakyan
+58cec9f9f670        nginx                       "nginx -g 'daemon of…"   2 months ago        Exited (255) 7 weeks ago    0.0.0.0:8080->80/tcp ex-daemon-basic
+a9347ec2a9e4        nginx                       "nginx -g 'daemon of…"   2 months ago        Exited (0) 2 months ago                   competent_elbakyan
+99e69d29ae21        nginx                       "nginx -g 'daemon of…"   2 months ago        Exited (0) 2 months ago                   vigorous_elion
+3eb3ab7479f6        nginx                       "nginx -g 'daemon of…"   2 months ago        Exited (0) 2 months ago                   angry_greider
+7e18875847aa        debian                      "bash"                   2 months ago        Exited (0) 2 months ago                   mydeb
+81867d9cce2f        debian                      "bash"                   2 months ago        Exited (2) 2 months ago                   reverent_spence
+5f4078c29cbd        debian                      "bash"                   2 months ago        Exited (0) 2 months ago                   reverent_wozniak
+0feaf4a52590        debian                      "bash --version"         2 months ago        Exited (0) 2 months ago                   distracted_wilbur
+f4efc372d677        debian                      "bash --version"         2 months ago        Exited (0) 2 months ago                   competent_blackburn
+179e8f966fe3        hello-world                 "/hello"                 2 months ago        Exited (0) 2 months ago                   stupefied_newton
+164bb861f22e        kafka-docker-master_kafka   "start-kafka.sh"         2 months ago        Exited (143) 2 months ago                 -docker-master_kafka_1
+2e47368c1c15        wurstmeister/zookeeper      "/bin/sh -c '/usr/sb…"   2 months ago        Exited (137) 2 months ago                -docker-master_zookeeper_1
+```
+
+Agora para inicializar um container uso o comando
+a -> attachment (anexo)
+i -> modo interativo
+```console
+> docker container start -ai mydeb
+root@7e18875847aa:/#
+```
+
+Agora repita os passos anterios para criar o arquivo, feche e entre novamente no container reutilizando.
+```console
+root@7e18875847aa:/# ls curso-docker.txt
+curso-docker.txt
+root@7e18875847aa:/#
+```
+Passos importante para nomear container que serão reutilizados:
+1. Dê nome relevantes, que faça sentido ao que o com a função do container.
+2. Use o comando `start` e nome para inicializar o container.
