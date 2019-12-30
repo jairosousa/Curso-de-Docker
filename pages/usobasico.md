@@ -139,6 +139,43 @@ a9347ec2a9e4        nginx                       "nginx -g 'daemon of…"   2 mon
 ```console
 > docker container run --rm debian bash --version
 ```
-*Ao executar o comando ele automaticamente exclui o container*
+*Deois executar o comando ele automaticamente exclui o container, não aparece `ps -a`*
 
 > O comando `--rm` remove um container
+
+## 4- Run cria sempre novo containers
+O método `run` sempre cria um novo container toda vez que é chamado.
+
+### Vamos para exemplo pratico:
+
+1. rode o comando 
+```console
+> docker container run -it debian bash
+```
+> [!IMPORTANT]
+> *Esse comando você entra no terminal do container, onte `i` é o modo interativo e o `t` é chamda para o terminal.*
+
+2. Agora você tem acesso ao terminal do container, crie um arquivo com comando touch
+```console
+root@35133706f312:/# touch curso-docker.txt
+```
+3. Agora execute o comando `ls`para verificar se de fato o arquivo foi criado dentro do container
+```console
+root@35133706f312:/# ls curso-docker.txt
+curso-docker.txt
+root@35133706f312:/# 
+```
+4. Agora saia do container com comando `exit`
+```console
+root@35133706f312:/# exit
+```
+5. Crie novamente o container e verifique se de fato o arquivo não está no novo container
+
+```console
+> docker container run -it debian bash
+root@35133706f312:/# ls curso-docker.txt
+ls: cannot access 'curso-docker.txt': No such file or directory
+root@35133706f312:/# 
+```
+> [!NOTE]
+> De fato o arquivo não está, e comprova que o comando `run`cria sempre novo container.
