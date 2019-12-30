@@ -198,17 +198,6 @@ Primeiro list todos os container
 ```console
 > docker container ls -a
 CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS                      PORTS           NAMES
-a1a70495fc66        debian                      "bash"                   25 minutes ago      Exited (2) 11 minutes ago                beautiful_jackson
-35133706f312        debian                      "bash"                   34 minutes ago      Exited (0) 25 minutes ago                charming_dhawan
-6cb4754d1bb9        debian                      "bash --version"         19 hours ago        Exited (0) 19 hours ago                  practical_cannon
-295a62e7c14c        hello-world                 "/hello"                 20 hours ago        Exited (0) 20 hours ago                  hardcore_euler
-23a09c3e8b67        jenkins/jenkins             "/sbin/tini -- /usr/…"   3 days ago          Exited (255) 28 hours ago   0.0.0.0:8080->8080/tcp, 50000/tcp   
-196c225d0c1e        hello-world                 "/hello"                 6 days ago          Exited (0) 6 days ago                    suspicious_kalam
-0e6472c2c477        hello-world                 "/hello"                 6 days ago          Exited (0) 6 days ago                    recursing_elbakyan
-58cec9f9f670        nginx                       "nginx -g 'daemon of…"   2 months ago        Exited (255) 7 weeks ago    0.0.0.0:8080->80/tcp ex-daemon-basic
-a9347ec2a9e4        nginx                       "nginx -g 'daemon of…"   2 months ago        Exited (0) 2 months ago                   competent_elbakyan
-99e69d29ae21        nginx                       "nginx -g 'daemon of…"   2 months ago        Exited (0) 2 months ago                   vigorous_elion
-3eb3ab7479f6        nginx                       "nginx -g 'daemon of…"   2 months ago        Exited (0) 2 months ago                   angry_greider
 7e18875847aa        debian                      "bash"                   2 months ago        Exited (0) 2 months ago                   mydeb
 81867d9cce2f        debian                      "bash"                   2 months ago        Exited (2) 2 months ago                   reverent_spence
 5f4078c29cbd        debian                      "bash"                   2 months ago        Exited (0) 2 months ago                   reverent_wozniak
@@ -236,3 +225,19 @@ root@7e18875847aa:/#
 Passos importante para nomear container que serão reutilizados:
 1. Dê nome relevantes, que faça sentido ao que o com a função do container.
 2. Use o comando `start` e nome para inicializar o container.
+
+## 7 - Mapear porta de container
+Vamos instalar um container com servidor nginx e mapea-lo para a porta 8080 para podemos acessa-lo externamente apartir dessa porta.
+1. digite o comando
+> -p -> porta
+>
+> 8080 -> é a porta onde você vai acessar na sua máquina host ou outro meio externo.
+>
+> 80 -> é a porta padrão do nginx
+
+```console
+> docker container run -p 8080:80 nginx
+```
+2. Verifique no browser se esta funcionando o servidor na porta 8080
+![imagem06](https://github.com/jairosousa/Curso-de-Docker/blob/master/pages/img/img06.PNG)
+
