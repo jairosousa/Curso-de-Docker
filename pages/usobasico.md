@@ -69,10 +69,10 @@ A partir da versão 1.13 ouve mudança sensível aos comandos que você usa ao t
 O comando `run` é a porta de entrada para o *mundo docker* ele agrupa uma série de comandos.
 
 Ele faz:
-1. Docker image pull -> baixar uma *image* do *registry* para sua máquina local
-2. Docker container create -> é a criação do container.
-3. Docker container start -> inicialização do container.
-4. Docker container exec -> é a execução do container em modo interativo.
+1. Docker image pull &rarr; baixar uma *image* do *registry* para sua máquina local
+2. Docker container create &rarr; é a criação do container.
+3. Docker container start &rarr; inicialização do container.
+4. Docker container exec &rarr; é a execução do container em modo interativo.
 
 ## 3 - Ferramentas Diferentes
 
@@ -209,8 +209,8 @@ f4efc372d677        debian                      "bash --version"         2 month
 ```
 
 Agora para inicializar um container uso o comando
-a -> attachment (anexo)
-i -> modo interativo
+a &rarr; attachment (anexo)
+i &rarr; modo interativo
 ```console
 > docker container start -ai mydeb
 root@7e18875847aa:/#
@@ -229,11 +229,11 @@ Passos importante para nomear container que serão reutilizados:
 ## 7 - Mapear porta de container
 Vamos instalar um container com servidor nginx e mapea-lo para a porta 8080 para podemos acessa-lo externamente apartir dessa porta.
 1. digite o comando
-> -p -> porta
+> -p &rarr; porta
 >
-> 8080 -> é a porta onde você vai acessar na sua máquina host ou outro meio externo.
+> 8080 &rarr; é a porta onde você vai acessar na sua máquina host ou outro meio externo.
 >
-> 80 -> é a porta padrão do nginx
+> 80 &rarr; é a porta padrão do nginx
 
 ```console
 > docker container run -p 8080:80 nginx
@@ -241,3 +241,32 @@ Vamos instalar um container com servidor nginx e mapea-lo para a porta 8080 para
 2. Verifique no browser se esta funcionando o servidor na porta 8080
 ![imagem06](https://github.com/jairosousa/Curso-de-Docker/blob/master/pages/img/img06.PNG)
 
+## 8  - Mapear diretório para o container
+Vamos nos mapaer volumes, o mapeamento mais simples é o volume de uma pasta do computador host para uma pasta no container, nesse exemplo vamos continuar usando a imagem do nginx, vamos ter criar uma extrutura de arquivo no seu desktop.
+```console
+desktop\ mkdir curso-docker
+desktop\ cd curso-docker
+desktop\curso-docker\ mkdir ex-volume
+desktop\ curso-docker\cd ex-volume
+desktop\ curso-docker\ex-volume\
+```
+
+Abra o editor de texto de sua preferência e crie arquivo html.
+
+```console
+desktop\ curso-docker\ex-volume\ docker container run -p 8080:80 -v ${pwd}/html:/usr/share/nginx/html nginx
+```
+* **-v** &rarr; indica vamos mapear um volume para o container.
+* **${pwd}** &rarr; ele pega o diretorio atual.
+* **/html** &rarr; pasta onde esta o arquivo html.
+* **:** &rarr; começa mapeamento da pasta do container.
+* **/src/share/nginx/html** &rarr; este é o diretorio padrão do servidor no nginx.
+
+:+1: **OBSERVAÇÃO**
+
+No windowas use endereço completo do diretorio o comando ${pwd} não funciona.
+
+desktop\ curso-docker\ex-volume\ docker container run -p 8080:80 -v c:/curso-docker/ex-volume/html:/usr/share/nginx/html nginx
+
+Verifique se no brawser esta carregando na porta 8080
+![imagem07](https://github.com/jairosousa/Curso-de-Docker/blob/master/pages/img/img07.PNG)
