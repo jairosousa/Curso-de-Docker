@@ -1,4 +1,6 @@
-# Curso Docker :docker:
+![docker](./docker.png)
+
+# Curso Docker:
 
 * [Introdução](pages/introducao.md)
 
