@@ -251,7 +251,7 @@ desktop\ curso-docker\cd ex-volume
 desktop\ curso-docker\ex-volume\
 ```
 
-Abra o editor de texto de sua preferência e crie arquivo html.
+✏️ Abra o editor de texto de sua preferência e crie arquivo html.
 
 ```console
 desktop\curso-docker\ex-volume\ docker container run -p 8080:80 -v ${pwd}/html:/usr/share/nginx/html nginx
@@ -269,6 +269,7 @@ No windowas use endereço completo do diretorio o comando ${pwd} não funciona.
 desktop\curso-docker\ex-volume\ docker container run -p 8080:80 -v c:/curso-docker/ex-volume/html:/usr/share/nginx/html nginx
 
 Verifique se no brawser esta carregando na porta 8080 😉
+
 ![imagem07](https://github.com/jairosousa/Curso-de-Docker/blob/master/pages/img/img07.PNG)
 
 ## 9 - Rodar o servidor web em background
@@ -294,7 +295,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 da771ece1efa        nginx               "nginx -g 'daemon of…"   5 minutes ago       Up 5 minutes        0.0.0.0:8080->80/tcp   ex-daemon-basic
 ```
 
-✋ Para para o container
+✋ Para parar o container
 ```console
 desktop\curso-docker\ex-volume\ docker container stop ex-daemon-basic
 ex-daemon-basic
@@ -302,3 +303,108 @@ desktop\curso-docker\ex-volume\
 ```
 ✏️ Voçê pode passar o nome do container ou o ID.
 
+## 10 - Gerênciar o container em background
+
+Existe 3 comando básico, que ja foram falados anteriormente, que você pode usar para gerenciar seus contauners.
+
+### ▶️ **Start**
+```console
+> docker container start ex-daemon-basic
+ex-daemon-basic
+
+> docker container ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                  NAMES
+da771ece1efa        nginx               "nginx -g 'daemon of…"   43 minutes ago      Up 3 minutes        0.0.0.0:8080->80/tcp   ex-daemon-basic
+```
+👁️ em seguida você verifica se de fato o container esta funcionando.
+
+### 🔁 **Restart**
+
+```console
+docker container restart ex-daemon-basic
+ex-daemon-basic
+```
+
+### ⏹️ **Stop**
+
+```console
+docker container stop ex-daemon-basic
+ex-daemon-basic
+
+> docker container ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+
+```
+
+## 11 - Manipulação de containers em modo Daemon
+
+### **ls &rarr;** Lista dos containers ativos.
+```console
+> docker container ls
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+```
+
+### **list &rarr;** Lista dos containers ativo.
+```console
+> docker container list
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+```
+
+### **ps &rarr;** Lista dos containers ativo.
+```console
+> docker container ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+```
+
+### **ls -a &rarr;** Lista dos containers ja criados e em todos status possíveis.
+```console
+> docker container ls -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+
+da771ece1efa        nginx                       "nginx -g 'daemon of…"   58 minutes ago      Exited (0) 9 minutes ago                                        ex-daemon-basic
+0b8ee8d66896        nginx                       "nginx -g 'daemon of…"   2 hours ago         Exited (0) 58 minutes ago                                       flamboyant_brattain
+541189717ad3        nginx                       "nginx -g 'daemon of…"   2 hours ago         Created                                                         quizzical_hopper
+9664f32c8ef4        nginx                       "nginx -g 'daemon of…"   2 hours ago         Created                                                         zen_shamir b2007a1d0113        nginx                       "nginx -g 'daemon of…"   2 hours ago         Created        busy_black
+```
+
+⚠️ O mesmo comando **`-a`** serve para os demais comandos de lista **`list` e `ps`**
+
+⚠️ Os comando **`ls`, `list` e `ps`** são **Alias** (pseudônimo), apelidos que o docker dá para mesma funcionalidades.
+
+### **logs &rarr;** Virifica os ***`Logs`*** do sistema do container.
+
+```console
+> docker container logs ex-daemon-basic
+172.17.0.1 - - [01/Jan/2020:20:49:25 +0000] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36" "-"
+172.17.0.1 - - [01/Jan/2020:21:29:16 +0000] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36" "-"
+172.17.0.1 - - [01/Jan/2020:21:56:19 +0000] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36" "-"
+> 
+```
+
+### **inspect &rarr;** Inspeciona e mostra em formato ***`json`***  varias caracteristicas do container, que tipo de imagem que ele se baseia, o diretorio de log, status etc..
+
+```console
+>  docker container inspect ex-daemon-basic
+[
+    {
+        "Id": "da771ece1efa4231bab66c39952ce4602265d32cbb28fcd1e290ec7f0c44b615",
+        "Created": "2020-01-01T20:49:14.0742488Z",
+        "Path": "nginx",
+        "Args": [
+            "-g",
+            "daemon off;"
+        ],
+
+        ---
+]
+
+```
+
+### **exec &rarr;** Executa um comando dentro do container
+
+```console
+> docker container exec ex-daemon-basic uname -or
+4.9.184-linuxkit GNU/Linux
+```
+
+✏️ Este comando mostra que tipo de sistema esta rodando no container.
