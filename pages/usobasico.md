@@ -254,7 +254,7 @@ desktop\ curso-docker\ex-volume\
 Abra o editor de texto de sua preferência e crie arquivo html.
 
 ```console
-desktop\ curso-docker\ex-volume\ docker container run -p 8080:80 -v ${pwd}/html:/usr/share/nginx/html nginx
+desktop\curso-docker\ex-volume\ docker container run -p 8080:80 -v ${pwd}/html:/usr/share/nginx/html nginx
 ```
 * **-v** &rarr; indica vamos mapear um volume para o container.
 * **${pwd}** &rarr; ele pega o diretorio atual.
@@ -266,7 +266,39 @@ desktop\ curso-docker\ex-volume\ docker container run -p 8080:80 -v ${pwd}/html:
 
 No windowas use endereço completo do diretorio o comando ${pwd} não funciona.
 
-desktop\ curso-docker\ex-volume\ docker container run -p 8080:80 -v c:/curso-docker/ex-volume/html:/usr/share/nginx/html nginx
+desktop\curso-docker\ex-volume\ docker container run -p 8080:80 -v c:/curso-docker/ex-volume/html:/usr/share/nginx/html nginx
 
-Verifique se no brawser esta carregando na porta 8080
+Verifique se no brawser esta carregando na porta 8080 😉
 ![imagem07](https://github.com/jairosousa/Curso-de-Docker/blob/master/pages/img/img07.PNG)
+
+## 9 - Rodar o servidor web em background
+
+Vamos rodar o servidor em modo backgound ou seja usar no modo DAEMON.
+
+🚩 Este é modo principal do Docker, é o mais utilizado.
+
+```console
+desktop\curso-docker\ex-volume\ docker container run -d --name ex-daemon-basic -p 8080:80 -v ${pwd}/html:/usr/share/nginx/html nginx
+da771ece1efa4231bab66c39952ce4602265d32cbb28fcd1e290ec7f0c44b615
+desktop\curso-docker\ex-volume\
+```
+
+* **-d &rarr;** indica em rodar no modo DAEMON
+
+⚠️ repare que ele passa o ID do container e libera o consol, mas o container esta em funcionamento.
+
+🧐 Para verifica basta usar o comando
+```console
+desktop\curso-docker\ex-volume\ docker container ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                  NAMES
+da771ece1efa        nginx               "nginx -g 'daemon of…"   5 minutes ago       Up 5 minutes        0.0.0.0:8080->80/tcp   ex-daemon-basic
+```
+
+✋ Para para o container
+```console
+desktop\curso-docker\ex-volume\ docker container stop ex-daemon-basic
+ex-daemon-basic
+desktop\curso-docker\ex-volume\
+```
+✏️ Voçê pode passar o nome do container ou o ID.
+
