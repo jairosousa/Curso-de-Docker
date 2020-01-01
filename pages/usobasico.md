@@ -1,4 +1,4 @@
-# Introdução ao Docker Client
+# Introdução ao :docker: Docker Client
 
 ## 1 - Hello World: Docker Funcional
 
@@ -408,3 +408,5 @@ da771ece1efa        nginx                       "nginx -g 'daemon of…"   58 mi
 ```
 
 ✏️ Este comando mostra que tipo de sistema esta rodando no container.
+
+## Nova sintaxe do Docker Client

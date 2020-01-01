@@ -1,4 +1,4 @@
-# Curso Docker
+# Curso Docker :docker:
 
 * [Introdução](pages/introducao.md)
 
