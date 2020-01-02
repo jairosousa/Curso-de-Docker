@@ -92,7 +92,7 @@ Commands:
 Run 'docker volume COMMAND --help' for more information on a command.
 ```
 
-## Entendendo melhor as imagens
+## 3 - Entendendo melhor as imagens
 
 As nossas imagens são organizadas em ***Registry*** O **Docker Hub** é o mais famoso dele.
 
@@ -170,7 +170,7 @@ wurstmeister/zookeeper      latest              3f43f72cb283        11 months ag
 hello-world                 latest              fce289e99eb9        12 months ago       1.84kB
 ```
 
-### Repare que alem de ter redis na ultima latest temos tambem o co3r-redis e perceba que temos o mesmo hash (ID) gerado.
+### Repare que alem de ter redis na ultima latest temos tambem o cod3r-redis e perceba que temos o mesmo hash (ID) gerado.
 
 ![imagem08](https://github.com/jairosousa/Curso-de-Docker/blob/master/pages/img/img08.PNG)
 
