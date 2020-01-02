@@ -7,3 +7,5 @@
 * [Instalação](pages/instalacao.md)
 
 * [Uso Básico](pages/usobasico.md)
+
+* [Usuário](pages/usuario.md)

@@ -1,4 +1,4 @@
-# Introdução ao  🐳Docker Client
+# Introdução ao 🐳Docker Client
 
 ## 1 - Hello World: Docker Funcional
 
