@@ -76,15 +76,14 @@ Ele faz:
 
 ## 3 - Ferramentas Diferentes
 
-Existe dosi modos básicos que pode usar dentro do docker para executar container.
+* Existe dois modos básicos que pode usar dentro do docker para executar container.
 
 1. Modo DAIMON que é modo que executa em processo em background, podemos dizer qué o modo primário.
 
 2. Modo INTERATIVO serve muito para fazer esperimento, para entrar no container, fazer configuração ou alguns testes.
 
-Alguns comando para verificar a versão do bash na maquina local:
+* Alguns comando para verificar a versão do bash na maquina local:
 
-1. 
 ```bash
 $ bash --version
 
@@ -96,7 +95,7 @@ This is free software; you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
 ```
 
-Baixar imagem do **Debian** e despois executar o mesmo comnado local `bash --version`
+* Para baixar imagem do **Debian** e despois executar o mesmo comnado local `bash --version`
 
 ```bash
 $ docker container run debian bash --version
@@ -110,14 +109,16 @@ There is NO WARRANTY, to the extent permitted by law.
 ```
 > *Esse comando vai fazer o download da imagem `docker image pull`ele vai fazer a criação do container `docker container create`, ele vai fazer a inicialização do container `docker container start`, e vai executar esse comando em modo interativo vai aparecer a execução do comando `bash --version` direto no bash, como visulizadoi na imagem acima, e tambem executa o `docker container exec`*
 
-Comando para verificar quais os container que estão sendo executados no momento:
+* Comando para verificar quais os container que estão sendo executados no momento:
+
 ```bash
 $ docker container ps
 
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 ```
 
-Comando mostra os container executados independente do status:
+* Comando mostra os container executados independente do status:
+
 ```bash
 $ docker container ps -a
 
@@ -139,9 +140,9 @@ a9347ec2a9e4        nginx                       "nginx -g 'daemon of…"   2 mon
 ```bash
 $ docker container run --rm debian bash --version
 ```
-*Depois executar o comando ele automaticamente exclui o container, não aparece `ps -a`*
+* Depois executar o comando ele automaticamente exclui o container, não aparece `ps -a`*
 
-$ O comando `--rm` remove um container
+> O comando `--rm` remove um container
 
 ## 4- Run cria sempre novos containers
 O método `run` sempre cria um novo container toda vez que é chamado.
@@ -152,14 +153,16 @@ O método `run` sempre cria um novo container toda vez que é chamado.
 ```bash
 $ docker container run -it debian bash
 ```
-> *Esse comando você entra no terminal do container, onde o* `i` *é o modo interativo e o* `t` *é chamda para o terminal.*
+> Esse comando você entra no terminal do container, onde o* `i` *é o modo interativo e o* `t` *é chamda para o terminal.*
 
 2. Agora você tem acesso ao terminal do container, crie um arquivo com comando touch
+
 ```bash
 # touch curso-docker.txt
 $ root@35133706f312:/
 ```
 3. Agora execute o comando `ls` para verificar se de fato o arquivo foi criado dentro do container
+
 ```bash
 # ls curso-docker.txt
 $ root@35133706f312:/
@@ -186,7 +189,7 @@ Vamos começar agora aprender como nomer container, criar estratégia de reusar 
 ```bash
 $ docker container run --name mydeb -it debian bash
 ```
-> *O nome dado ao container é* `mydeb` 
+* O nome dado ao container é* `mydeb` 
 
 * Tente criar novamente o container, repita o mesmo comando anterior
 ```bash
@@ -390,7 +393,7 @@ $ docker container logs ex-daemon-basic
 172.17.0.1 - - [01/Jan/2020:21:56:19 +0000] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36" "-"
 > 
 ```
-:ledger:
+📖
 >  **inspect &rarr;** Inspeciona e mostra em formato ***`json`***  varias caracteristicas do container, que tipo de imagem que ele se baseia, o diretorio de log, status etc..
 
 ```bash
@@ -436,4 +439,4 @@ $ docker volume rm <ID ou nome volume>
 ```
 
 
-[voltar página principal](https://github.com/jairosousa/Curso-de-Docker)
+[voltar página principal](https://jairosousa.github.io/Curso-de-Docker)
