@@ -10,8 +10,8 @@ Isso tem estar bem claro, qualquer coisa revise o capitulo de [Introdução](./i
 
 ### ⚠️ O comando `docker container --help` você tem acesso a todos os subcomando de container.
 
-```console
-> docker container --help
+```bash
+$ docker container --help
 
 Usage:  docker container COMMAND
 
@@ -49,8 +49,8 @@ Run 'docker container COMMAND --help' for more information on a command.
 
 ### ⚠️ O comando `docker image --help` você tem acesso a todos os subcomando das imagens.
 
-```console
-> docker image --help
+```bash
+$ docker image --help
 
 Usage:  docker image COMMAND
 
@@ -94,12 +94,17 @@ Run 'docker volume COMMAND --help' for more information on a command.
 
 ## 3 - Entendendo melhor as imagens
 
-As nossas imagens são organizadas em ***Registry*** O **Docker Hub** é o mais famoso dele.
+As nossas imagens são organizadas em ***Registry*** O [**Docker Hub**](https://github.com/jairosousa/Curso-de-Docker.git) é o mais famoso dele.
 
+```bash
+# Comando para baixar uma imagem
+$ docker image pull
+```
 ### Vamos baixar uma imagem do Docker Hub para memoria maquina.
 
-```console
-> docker image pull redis:latest
+```bash
+# Baixar a ultima versão do Redis (latest)
+$ docker image pull redis:latest
 
 latest: Pulling from library/redis
 8ec398bc0356: Pull complete
@@ -114,8 +119,8 @@ docker.io/library/redis:latest
 > 
 ```
 
-```console
-> docker image ls
+```bash
+$ docker image ls
 
 REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
 redis                       latest              c33c9b2541a8        4 days ago          98.2MB
@@ -132,8 +137,8 @@ hello-world                 latest              fce289e99eb9        12 months ag
 
 ### Podemos inspecionar essa imagem:
 
-```console
-> docker image inspect redis:latest
+```bash
+$ docker image inspect redis:latest
 [
     {
         "Id": "sha256:c33c9b2541a8fea04fe621e1e9d4e5973d9062f2a4eaac7a8d8b82c23c1b0aa8",
@@ -172,12 +177,12 @@ hello-world                 latest              fce289e99eb9        12 months ag
 
 ### Repare que alem de ter redis na ultima latest temos tambem o cod3r-redis e perceba que temos o mesmo hash (ID) gerado.
 
-![imagem08](https://github.com/jairosousa/Curso-de-Docker/blob/master/pages/img/img08.PNG)
+![imagem08](img/img08.PNG)
 
 ### Agora podemos excluir as duas imagems
 
-```console
-> docker image rm redis:latest cod3r-redis
+```bash
+$ docker image rm redis:latest cod3r-redis
 
 Untagged: redis:latest
 Untagged: redis@sha256:21b037b4f6964887bb12fd8d72d06c7ab1f231a58781b6ca2ceee0febfeb0d36
@@ -192,4 +197,57 @@ Deleted: sha256:556c5fb0d91b726083a8ce42e2faaed99f11bc68d3f70e2c7bbce87e7e0b3e10
 ```
 
 
-## ⚠️ As **Tags** são pointeiros para imagem especificas,  via de regra não é interessante apontar para última versão sempre, pois você oode ter sistema estavel e um software pode sofrer atualização. O Ideal e ter versão especificas.
+> 💡 As **Tags** são pointeiros para imagem especificas,  via de regra não é interessante apontar para última versão sempre, pois você oode ter sistema estavel e um software pode sofrer atualização. O Ideal e ter versão especificas.
+
+# Comandos Básicos no Gerenciamento de Imagens
+
+* Todos os comando começão com `docker image`
+
+```bash
+# Pull
+$ docker image pull 
+```
+* É o comando responsavel de baixar uma imagem direto do **Docker HUB**
+* Muitas vesez ele acontece de modo implicito, isto é, você não precisa diretamente chamar o `docker pull`.
+
+> Exemplo: Você chama o comando `docker run` e o docker percebe que não tem a imagem no seu regisry local (*sua máquina*) ele automaticamente chama o `docker image pull` para baixar essa imagem.
+
+```bash
+# ls
+$ docker image ls 
+```
+* serve para listar imagens
+
+```bash
+# rm
+$ docker image rm <nome tag>ou <hash>
+```
+* serve para remover image, depois do comando você acrescenta o nome da *tag* ou varias separadas por espaço ou pode usar o *hash* ou sequencia deles.
+
+```bash
+# inspect
+$ docker image inspect <nome tag>ou <hash>
+```
+* Image que você queira inspecionar vai te mostrar um documento em formato `json` com várias informações importante sobre a imagem.
+
+```bash
+# tag
+$ docker image tag <imagem de origem> <nome da tag que você quer colocar>
+```
+* Nesse você passa dois parâmetros?
+  * Primeiro a imagem de origem fonte onde quer aplicar uma tag.
+  * Segundo você passa o nome da tag de fato e você quer colocar.
+
+
+```bash
+# buid
+$ docker image build
+```
+* Você pega um arquivo descritor do docker ele vai interpletar esse arquivo ele vai contruir sua image vai gerar.
+
+```bash
+# push
+$ docker image build
+```
+
+* Uma vez que você cria uma image da um `build` nessa image você pode publicar ou no regisry local ou no regisry do Git Hub
