@@ -9,3 +9,5 @@
 * [Uso Básico](pages/usobasico.md)
 
 * [Usuário](pages/usuario.md)
+
+* [Build](pages/build.md)

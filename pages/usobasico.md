@@ -107,7 +107,7 @@ License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html$
 This is free software; you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
 ```
-> *Esse comando vai fazer o download da imagem `docker image pull`ele vai fazer a criação do container `docker container create`, ele vai fazer a inicialização do container `docker container start`, e vai executar esse comando em modo interativo vai aparecer a execução do comando `bash --version` direto no bash, como visulizadoi na imagem acima, e tambem executa o `docker container exec`*
+> Esse comando vai fazer o download da imagem `docker image pull`ele vai fazer a criação do container `docker container create`, ele vai fazer a inicialização do container `docker container start`, e vai executar esse comando em modo interativo vai aparecer a execução do comando `bash --version` direto no bash, como visulizadoi na imagem acima, e tambem executa o `docker container exec`
 
 * Comando para verificar quais os container que estão sendo executados no momento:
 
@@ -144,7 +144,7 @@ $ docker container run --rm debian bash --version
 
 > O comando `--rm` remove um container
 
-## 4- Run cria sempre novos containers
+## 4- **Run** sempre cria novos containers
 O método `run` sempre cria um novo container toda vez que é chamado.
 
 ### Vamos para exemplo pratico:
@@ -184,7 +184,7 @@ root@35133706f312:/#
 ```
 > De fato o arquivo não está, e comprova que o comando `run` sempre cria novo container.
 
-## 5 - Nomeando containers
+## 5 - Nomeando Containers
 Vamos começar agora aprender como nomer container, criar estratégia de reusar o mesmo container mais de uma vez.
 ```bash
 $ docker container run --name mydeb -it debian bash
@@ -199,9 +199,9 @@ See 'docker run --help'
 ```
 > Veja que gera um erro e reforçando que devemos nomear os container com  nomes unicos.
 
-## 6 - Reutilizar containers
+## 6 - Reutilizar Containers
 
-* Primeiro list todos os container
+* Primeiro listar todos os container
 
 ```bash
 $ docker container ls -a
@@ -424,14 +424,14 @@ $ docker container exec ex-daemon-basic uname -or
 
 ## Nova sintaxe do Docker Client
 
-### Listar
+### 📜 Listar
 ```bash
 $ docker container ls
 $ docker image ls
 $ docker volume ls
 ```
 
-### Excluir
+### 🗑️ Excluir
 ```bash
 $ docker container rm <ID ou nome container>
 $ docker image rm <ID ou nome imagem>
