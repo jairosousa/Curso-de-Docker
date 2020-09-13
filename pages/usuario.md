@@ -210,7 +210,7 @@ $ docker image pull
 * É o comando responsavel de baixar uma imagem direto do **Docker HUB**
 * Muitas vesez ele acontece de modo implicito, isto é, você não precisa diretamente chamar o `docker pull`.
 
-> Exemplo: Você chama o comando `docker run` e o docker percebe que não tem a imagem no seu regisry local (*sua máquina*) ele automaticamente chama o `docker image pull` para baixar essa imagem.
+> Exemplo: Você chama o comando `docker run` e o docker percebe que não tem a imagem no seu registry local (*sua máquina*) ele automaticamente chama o `docker image pull` para baixar essa imagem.
 
 ```bash
 # ls
@@ -250,4 +250,19 @@ $ docker image build
 $ docker image build
 ```
 
-* Uma vez que você cria uma image da um `build` nessa image você pode publicar ou no regisry local ou no regisry do Git Hub
+* Uma vez que você cria uma image da um `build` nessa image você pode publicar ou no registry local ou no registry do Git Hub
+
+# Docher Hub x Docker Registry
+
+* **Registry** é um serviço server side para registro e obtenção de image, é serviço que te disponibiliza uma *api* para que possa enviar  e resgatar image apartir desse serviço. Você pode por exemplo pegar um registry instalar na sua empresa ter um registry privado para image especificar que você quer criar dentro da empresa.
+
+* **Docker Hub** é um ***SAS*** (*Software As Service*) é um produto na nuvem disponibilizado pelo **Docker** ele dentro do **Docker Hub** existe um **Registry** que você possa registar suas imagens. **Docker Hub** é maior possue o **Registry** dentro dele, possui uma interface grafica, tem outras coisa que o **Registry** normal não tem.
+  * Exemplo dentro **Docker Hub** tem várias imagens oficiais, essas imagens oficiais são geradas pelo time do prório **Docker** eles que mantem essas imagens.
+
+
+
+
+
+
+
+[voltar página principal](https://github.com/jairosousa/Curso-de-Docker)
