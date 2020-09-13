@@ -1,10 +1,10 @@
 # Primeiro **Build**
 
-* Vamos criar um Descritor, para isso vamos acessar um editor de sua preferência, *exemplo:* *VS Code*, *Note Pad++* *etc..*
+* Vamos criar um **Descritor**, para isso vamos acessar um editor de sua preferência, *exemplo:* *VS Code*, *NotePad++* *etc..*
 
 * Crie diretorio onde vai guardar o arquivo e crie o arquivo `Dockerfile`, *exemplo:* `/primeiro-build/Dockerfile`.
 
-> ⚠️ O arquivo tem ter esse nome `Dockerfile` começa com 'D' maiusculo o 'f' minusculo e não tem instenção.
+> ⚠️ O arquivo tem ter esse nome `Dockerfile` começa com `"D"` maiusculo o `"f"` minusculo e não tem extenção.
 
 
 * FROM &rarr; é basicamento onde você quer basear sua image a partir de outra image.
@@ -14,8 +14,10 @@
 
 ```text
 # conteudo arquivo Dockerfile
+
 FROM nginx:latest
 RUN echo '<h1> Olá Mundo</h1>' > /usr/share/nginx/html/index.html
+
 ```
 
 * Dentro do diretorio onde criou o arquivo descritor abra o terminal.
