@@ -83,5 +83,91 @@ $ primeiro-build> docker container run -p 80:80  ex-simple-build
 
 ![ima09](img/img09.PNG)
 
+# Uso das Instruções de Preparação
 
+* Vamor criar um novo **Dockerfile** com a capacidade de receber parâmetro na hora de criação da image, vamos passar argumentos para que possa deizar alguns pontos de personalização na hora de gerar essa image.
+* Crie novo diretorio com arquivo **Dockerfile**, insira o conteúdo abaixo:
 
+```Text
+FROM debian
+LABEL maintainer 'Jairo Nascimento'
+
+ARG S3_BUCKET=files
+ENV S3_BUCKET=${S3_BUCKET}
+```
+LABEL &rarr; é variavel de personalização onde pode colocar o nome do autor do arquivo.
+
+ARG &rarr; onde voce define o argumento que vai passar para image.
+
+ENV &rarr; onde é definido a variavéis de anbiente para image é utilizado `${}` para definir qual argumeto que passar.
+
+```bash
+$ build-com-arg> docker image build -t ex-build-arg .
+
+Step 1/4 : FROM debian
+latest: Pulling from library/debian
+57df1a1f1ad8: Pull complete
+Digest: sha256:f744ed553780b84bf376fbfe7879de9a3aece6e611af110f95ca26188cf85cb6
+Status: Downloaded newer image for debian:latest
+ ---> f6dcff9b59af
+Step 2/4 : LABEL maintainer 'Jairo Nascimento'
+ ---> Running in 804e24a166bb
+Removing intermediate container 804e24a166bb
+ ---> 3c59a79314b3
+Step 3/4 : ARG S3_BUCKET=files
+ ---> Running in 6f7a9ad45652
+Removing intermediate container 6f7a9ad45652
+ ---> 4762caecbbfe
+Step 4/4 : ENV S3_BUCKET=${S3_BUCKET}
+ ---> Running in 9c1374d79d7d
+Removing intermediate container 9c1374d79d7d
+ ---> 4e197a47eb18
+Successfully built 4e197a47eb18
+Successfully tagged ex-build-arg:latest
+SECURITY WARNING: You are building a Docker image from Windows against a non-Windows Docker host. All files and directories added to build context will have '-rwxr-xr-x' permissions. It is recommended to double check and reset permissions for sensitive files and directories.
+```
+* Criado a image com argumento, para testar que foi criado, rode o container passando o comando `bash -c` vai utilizar o terminal e seguida `echo $S#_BUCKET`
+
+```bash
+$ build-com-arg> docker container run ex-build-arg bash -c 'echo $S3_BUCKET'
+files
+```
+Mostra o valor padrão passado no arquivo construtor.
+
+* Agora se quiser gerar nova image passando um novo valor para variavel:
+
+```bash
+$ build-com-arg> docker image build --build-arg S3_BUCKET=myapp -t ex-build-arg .
+
+Sending build context to Docker daemon  2.048kB
+Step 1/4 : FROM debian
+ ---> f6dcff9b59af
+Step 2/4 : LABEL maintainer 'Jairo Nascimento'
+ ---> Using cache
+ ---> 3c59a79314b3
+Step 3/4 : ARG S3_BUCKET=files
+ ---> Using cache
+ ---> 4762caecbbfe
+Step 4/4 : ENV S3_BUCKET=${S3_BUCKET}
+ ---> Running in ecc707ecf642
+Removing intermediate container ecc707ecf642
+ ---> 653f244ef06f
+Successfully built 653f244ef06f
+Successfully tagged ex-build-arg:latest
+SECURITY WARNING: You are building a Docker image from Windows against a non-Windows Docker host. All files and directories added to build context will have '-rwxr-xr-x' permissions. It is recommended to double check and reset permissions for sensitive files and directories.
+```
+
+* Agora você executa novamente o comando para rodar o container:
+```bash
+$ build-com-arg> docker container run ex-build-arg bash -c 'echo $S3_BUCKET'
+myapp
+```
+Com esses comando conseguimos passar argumentos que posso marcar dentro do **Dockerfile** 
+que são pontos de personalização que na hora de criar image você pode passar esses argumentos, para criar image especificas para cada argumen to que queira personalizar.
+
+* Temos outra forma de utilizar o `inspect` podemos fazer como fosse filtro em cima do arquivo que o `inspect` gera, veja o exemplo:
+
+```bash
+$ build-com-arg> docker inspect --format="{{index .Config.Labels.maintainer}}" ex-build-arg
+Jairo Nascimento
+```
