@@ -189,7 +189,7 @@ Vamos começar agora aprender como nomer container, criar estratégia de reusar 
 ```bash
 $ docker container run --name mydeb -it debian bash
 ```
-* O nome dado ao container é* `mydeb` 
+* O nome dado ao container é `mydeb` 
 
 * Tente criar novamente o container, repita o mesmo comando anterior
 ```bash

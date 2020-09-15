@@ -171,3 +171,47 @@ que são pontos de personalização que na hora de criar image você pode passar
 $ build-com-arg> docker inspect --format="{{index .Config.Labels.maintainer}}" ex-build-arg
 Jairo Nascimento
 ```
+
+# Uso das Instruções de Povoamento
+
+* Nesse caso passar arquivos para de sua máquina Host para dentro do container, o procedimento é mesmo criar arquivo `Dockerfile`em um diretório.
+
+* Agora crie um arquivo `index.html` com seguintes conteúdo:
+
+```text
+    <a href="conteudo.html">Conteúdo do Site</a>
+```
+
+* Nesse caso vamos copiar esse arquivo para dentro do container ele possui um link para um a página `conteudo.html`que será criado no arquivo construtor.
+
+* No arquivo `Dockerfile` insira as seguintes instruções:
+
+```text
+FROM nginx:latest
+LABEL maintainer 'Jairo Nascimento'
+
+RUN echo '<h1>Pagina de apresentação Jairo Nascimento</h1><br><h2>Conteúdo</h2>' > /usr/share/nginx/html/conteudo.html
+COPY *.html /usr/share/nginx/html/
+```
+
+1. O comando `RUN` vai executar o um `echo` que criar o conteudo `'<h1>Pagina de apresentação Jairo Nascimento</h1><br><h2>Conteúdo</h2>'` dentro do arquivo no diretorio passado depois operador `>` no caso `/usr/share/nginx/html/conteudo.html`
+
+2. O comando `COPY` vai copiar todo arquivo com extensão `*.html` que esteja dentro do diretório do arquivo, para dentro do diretorio `/usr/share/nginx/html/` no container.
+
+* No terminal execute o comando para gerar a **IMAGE**, lembrando é dentro do diretório onde foi criado o `Dockerfile`
+
+```bash
+$ build-com-copy> docker image build -t ex-build-copy .
+```
+
+* Agora excute o container, mapeando a porta 80 do container para sua porta 80 host.
+
+```bash
+$ build-com-copy> docker container run -p 80:80 ex-build-copy
+```
+
+* Agora é só conferir no browser.
+
+![img10](img/img10.png) ![img11](img/img11.png)
+
+
