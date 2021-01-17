@@ -13,3 +13,5 @@
 * [Build](pages/build.md)
 
 * [Docker Hub](pages/dockerhub.md)
+
+* [Redes](pages/redes.md)
