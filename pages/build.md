@@ -77,7 +77,7 @@ $ primeiro-build> docker container run -p 80:80  ex-simple-build
 /docker-entrypoint.sh: Configuration complete; ready for start up
 ```
 
-> O comando `-p 80:80` por default o servidor do nginx funcina na porta 80, então esse comando transporta tudo esta rodando no container nessa porta para ser utilizadas na porta 80 externo.
+> O comando `-p 80:80` por default o servidor do nginx funciona na porta 80, então esse comando transporta tudo esta rodando no container nessa porta para ser utilizadas na porta 80 externo.
 
 * Agora é só verificar no browser
 

@@ -11,3 +11,5 @@
 * [Usuário](pages/usuario.md)
 
 * [Build](pages/build.md)
+
+* [Docker Hub](pages/dockerhub.md)
