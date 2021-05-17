@@ -29,7 +29,8 @@ $ primeiro-build> docker image build -t ex-simple-build .
 
 * **`.`**  &rarr; indica o arquivo esta no mesmo diretorio do terminal.
 
-* Execute o comando: 
+* Execute o comando:
+
 ```bash
 $ primeiro-build> docker image build -t ex-simple-build .
 Sending build context to Docker daemon  2.048kB
